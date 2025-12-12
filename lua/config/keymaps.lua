@@ -1,0 +1,45 @@
+-- [[ 基本快捷键映射 ]]
+--  参见 `:help vim.keymap.set()`
+
+-- 在普通模式下按 <Esc> 时清除搜索高亮
+--  参见 `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- 诊断快捷键映射
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '打开诊断 [Q]uickfix 列表' })
+
+-- 在内置终端中使用一个更容易发现的快捷键退出终端模式。
+-- 否则，你通常需要按 <C-\><C-n>，这
+-- 不是没有更多经验的人会猜到的。
+--
+-- 注意：这在所有终端模拟器/tmux/等中都不会工作。尝试你自己的映射
+-- 或者直接使用 <C-\><C-n> 退出终端模式
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = '退出终端模式' })
+
+-- 提示：在普通模式下禁用方向键
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- 使分割窗口导航更容易的快捷键绑定。
+--  使用 CTRL+<hjkl> 在窗口之间切换
+--
+--  所有窗口命令列表，请参见 `:help wincmd`
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = '将焦点移动到左侧窗口' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = '将焦点移动到右侧窗口' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = '将焦点移动到下方窗口' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = '将焦点移动到上方窗口' })
+
+-- 注意：某些终端有冲突的快捷键映射或无法发送不同的键码
+-- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "将窗口移动到左侧" })
+-- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "将窗口移动到右侧" })
+-- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "将窗口移动到下方" })
+-- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "将窗口移动到上方" })
+
+-- 按ctrl + s 保存并回到默认模式
+vim.keymap.set('i', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式' })
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式' })
+
+-- 按 <leader>q 退出编辑器
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = '退出编辑器' })

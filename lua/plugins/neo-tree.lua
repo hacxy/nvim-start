@@ -16,20 +16,20 @@ return {
       function()
         -- 使用 reveal 命令：如果文件树未打开则打开并聚焦到当前文件，如果已打开则聚焦到当前文件
         -- 如果需要关闭，可以在文件树窗口内按 <leader>e
-        vim.cmd.Neotree('reveal')
+        vim.cmd.Neotree 'reveal'
       end,
       desc = '打开文件树（聚焦到当前文件）',
       silent = true,
     },
   },
   config = function()
-    require('neo-tree').setup({
+    require('neo-tree').setup {
       close_if_last_window = true, -- 如果是最后一个窗口则关闭
       filesystem = {
         window = {
           mappings = {
             ['<leader>e'] = 'close_window',
-            ['<space>'] = false, -- 移除 space 键的映射
+            ['<space>'] = nil, -- 移除 space 键的映射
           },
         },
         -- 打开文件后自动关闭文件树
@@ -47,22 +47,10 @@ return {
           event = 'file_opened',
           handler = function()
             -- 打开文件后关闭 neo-tree
-            vim.cmd.Neotree('close')
+            vim.cmd.Neotree 'close'
           end,
         },
       },
-    })
-  end,
-  init = function()
-    -- 确保启动时文件树是关闭的（如果之前会话中有打开）
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function()
-        -- 延迟执行，确保所有插件都已加载
-        vim.defer_fn(function()
-          local success, _ = pcall(vim.cmd.Neotree, 'close')
-        end, 100)
-      end,
-      once = true,
-    })
+    }
   end,
 }
