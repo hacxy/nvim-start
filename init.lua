@@ -97,7 +97,6 @@ rtp:prepend(lazypath)
 -- 注意：这里是你安装插件的地方。
 require('lazy').setup({
   -- 注意：插件可以通过链接添加（或对于 github 仓库：'owner/repo' 链接）。
-  -- 'NMAC427/guess-indent.nvim', -- 自动检测 tabstop 和 shiftwidth
 
   -- 注意：插件也可以通过使用表来添加，
   -- 第一个参数是链接，以下
@@ -614,6 +613,7 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      fold = { enable = true }, -- 启用 treesitter 折叠
     },
     -- 还有其他 nvim-treesitter 模块，你可以使用它们来与
     -- nvim-treesitter 交互。你应该探索一些，看看什么让你感兴趣：

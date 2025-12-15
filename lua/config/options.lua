@@ -79,3 +79,10 @@ vim.o.scrolloff = 10
 -- 则弹出一个对话框询问你是否希望保存当前文件
 -- 参见 `:help 'confirm'`
 vim.o.confirm = true
+
+-- 折叠配置
+-- 参见 `:help 'foldmethod'`
+vim.o.foldenable = true
+vim.o.foldmethod = 'indent'  -- 基于缩进折叠，适用于大多数代码文件
+vim.o.foldlevel = 99  -- 默认展开所有折叠（99 表示所有级别都展开）
+vim.o.foldnestmax = 10  -- 最大嵌套折叠级别

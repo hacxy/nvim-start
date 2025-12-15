@@ -3,13 +3,13 @@
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  version = '*',
+  lazy = false,
+  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
+    'nvim-tree/nvim-web-devicons', -- optional, but recommended
   },
-  lazy = false,
   keys = {
     {
       '<leader>e',
@@ -32,6 +32,7 @@ return {
             ['<space>'] = nil, -- 移除 space 键的映射
           },
         },
+
         -- 打开文件后自动关闭文件树
         hijack_netrw_behavior = 'open_default',
         use_libuv_file_watcher = true,
