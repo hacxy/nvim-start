@@ -42,4 +42,7 @@ vim.keymap.set('i', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认�
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式' })
 
 -- 按 <leader>q 退出编辑器
-vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = '退出编辑器' })
+vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = '退出编辑器' })
+-- 撤回
+vim.keymap.set({"n", "i"}, '<D-z>', '<Cmd>undo<CR>', {silent = true})
+

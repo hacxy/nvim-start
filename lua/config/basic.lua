@@ -7,22 +7,25 @@ vim.g.maplocalleader = ' '
 -- 如果你在终端中安装并选择了 Nerd Font，请设置为 true
 vim.g.have_nerd_font = true
 
--- [[ 设置选项 ]]
--- 参见 `:help vim.o`
--- 注意：你可以根据需要更改这些选项！
---  更多选项，请参见 `:help option-list`
-
 -- 默认显示行号
-vim.o.number = true
--- 你也可以添加相对行号，以帮助跳转。
---  自己尝试一下，看看你是否喜欢它！
--- vim.o.relativenumber = true
+vim.opt.number = true
+-- 相对行号
+-- vim.opt.relativenumber = true
+-- 高亮光标所在的行
+vim.opt.cursorline = true
+-- tab转为空格
+vim.opt.expandtab = true
+-- tab占用空格数
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 0
+
+vim.opt.autoread = true
 
 -- 启用鼠标模式，例如调整分割窗口大小很有用！
 -- vim.o.mouse = 'a'
 
--- 不显示模式，因为它已经在状态栏中
-vim.o.showmode = false
+-- 显示模式
+vim.o.showmode = true
 
 -- 在操作系统和 Neovim 之间同步剪贴板。
 --  在 `UiEnter` 之后安排设置，因为它可能会增加启动时间。
@@ -69,8 +72,6 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- 实时预览替换，在你输入时！
 vim.o.inccommand = 'split'
 
--- 显示光标所在的行
-vim.o.cursorline = true
 
 -- 在光标上方和下方保持的最小屏幕行数。
 vim.o.scrolloff = 10
@@ -84,5 +85,4 @@ vim.o.confirm = true
 -- 参见 `:help 'foldmethod'`
 vim.o.foldenable = true
 vim.o.foldmethod = 'indent'  -- 基于缩进折叠，适用于大多数代码文件
-vim.o.foldlevel = 99  -- 默认展开所有折叠（99 表示所有级别都展开）
-vim.o.foldnestmax = 10  -- 最大嵌套折叠级别
+
