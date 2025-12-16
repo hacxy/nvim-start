@@ -8,16 +8,16 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- 默认显示行号
-vim.opt.number = true
+vim.o.number = true
 -- 相对行号
 -- vim.opt.relativenumber = true
 -- 高亮光标所在的行
-vim.opt.cursorline = true
+vim.o.cursorline = true
 -- tab转为空格
-vim.opt.expandtab = true
+vim.o.expandtab = true
 -- tab占用空格数
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 0
+vim.o.tabstop = 4
+vim.o.shiftwidth = 0
 
 vim.opt.autoread = true
 
@@ -67,9 +67,9 @@ vim.o.splitbelow = true
 --   参见 `:help lua-options`
 --   和 `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = ' ', nbsp = '␣' }
 
--- 实时预览替换，在你输入时！
+-- 实时预览替换，在你输入时
 vim.o.inccommand = 'split'
 
 
@@ -84,5 +84,5 @@ vim.o.confirm = true
 -- 折叠配置
 -- 参见 `:help 'foldmethod'`
 vim.o.foldenable = true
-vim.o.foldmethod = 'indent'  -- 基于缩进折叠，适用于大多数代码文件
+-- vim.o.foldmethod = 'indent'  -- 基于缩进折叠，适用于大多数代码文件
 
