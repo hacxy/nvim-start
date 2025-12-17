@@ -12,3 +12,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Add IceLoad event
+vim.api.nvim_create_autocmd("User", {
+    pattern = "IceAfter colorscheme",
+    callback = function()
+        local function should_trigger()
+            return vim.bo.filetype ~= "dashboard" and vim.api.nvim_buf_get_name(0) ~= ""
+        end
+
+        local function trigger()
+            vim.api.nvim_exec_autocmds("User", { pattern = "HacxyLoad" })
+        end
+
+        if should_trigger() then
+            trigger()
+            return
+        end
+
+        local ice_load
+        ice_load = vim.api.nvim_create_autocmd("BufEnter", {
+            callback = function()
+                if should_trigger() then
+                    trigger()
+                    vim.api.nvim_del_autocmd(ice_load)
+                end
+            end,
+        })
+    end,
+})
