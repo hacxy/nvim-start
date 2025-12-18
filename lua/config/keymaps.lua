@@ -38,11 +38,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = '将焦点移动到上方窗
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "将窗口移动到上方" })
 
 -- 按ctrl + s 保存并回到默认模式
-vim.keymap.set('i', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式' })
-vim.keymap.set('n', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式' })
+vim.keymap.set('i', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式', silent = true })
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式', silent = true })
 
 -- 按 <leader>q 退出编辑器
 vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = '退出编辑器' })
--- 撤回
-vim.keymap.set({"n", "i"}, '<D-z>', '<Cmd>undo<CR>', {silent = true})
 
+-- 撤回
+vim.keymap.set({ 'n', 'i' }, '<D-z>', '<Cmd>undo<CR>', { silent = true })
