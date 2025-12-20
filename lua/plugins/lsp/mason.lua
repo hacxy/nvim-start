@@ -6,6 +6,7 @@ return {
       "ts_ls",
       "lua_ls",
       "stylua",
+      "eslint",
     },
   },
   dependencies = {
