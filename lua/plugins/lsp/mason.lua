@@ -1,15 +1,19 @@
 return {
   "mason-org/mason-lspconfig.nvim",
-  opts = {
-    ensure_installed = {
-      "html",
-      "ts_ls",
-      "lua_ls",
-      "stylua",
-      "eslint",
-    },
-  },
   dependencies = {
+    {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      opts = {
+        ensure_installed = {
+          "html",
+          "ts_ls",
+          "lua_ls",
+          "stylua",
+          "eslint",
+          "prettier",
+        },
+      },
+    },
     {
       "mason-org/mason.nvim",
       opts = {
