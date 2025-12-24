@@ -4,6 +4,7 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
+      ts = { "prettier" },
     },
     format_on_save = {
       -- These options will be passed to conform.format()
