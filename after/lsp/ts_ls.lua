@@ -40,7 +40,6 @@ return {
     },
   },
   on_attach = function(client, bufnr)
-    print('hello')
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
 
