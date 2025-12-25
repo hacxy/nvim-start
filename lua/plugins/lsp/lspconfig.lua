@@ -72,6 +72,10 @@ return {
     vim.lsp.config('*', {
       capabilities = capabilities,
     })
-    vim.diagnostic.config({ update_in_insert = true, virtual_text = true })
+
+    vim.diagnostic.config({
+      update_in_insert = true,
+      virtual_text = true,
+    })
   end,
 }

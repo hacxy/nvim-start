@@ -3,7 +3,7 @@
 
 local function is_file_too_large(buf, max_size_kb)
   local filename = vim.api.nvim_buf_get_name(buf)
-  if not filename or filename == "" then
+  if not filename or filename == '' then
     return false
   end
 
@@ -16,8 +16,8 @@ end
 
 return {
   {
-    "windwp/nvim-ts-autotag",
-    event = { "BufReadPre", "BufNewFile" },
+    'windwp/nvim-ts-autotag',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       opts = {
         -- Defaults
@@ -28,64 +28,64 @@ return {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
     lazy = false,
-    build = ":TSUpdate",
-    branch = "main",
-    event = { "BufReadPre", "BufNewFile" },
+    build = ':TSUpdate',
+    branch = 'main',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-context",
+      'nvim-treesitter/nvim-treesitter-context',
     },
     config = function()
-      local ts = require "nvim-treesitter"
+      local ts = require('nvim-treesitter')
 
       -- Install core parsers at startup
-      ts.install {
-        "bash",
-        "comment",
-        "css",
-        "diff",
-        "fish",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "gitignore",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "norg",
-        "python",
-        "regex",
-        "scss",
-        "toml",
-        "tsx",
-        "typescript",
-        "typst",
-        "vim",
-        "vimdoc",
-        "vue",
-        "xml",
-      }
+      ts.install({
+        'bash',
+        'comment',
+        'css',
+        'diff',
+        'fish',
+        'git_config',
+        'git_rebase',
+        'gitcommit',
+        'gitignore',
+        'html',
+        'javascript',
+        'json',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'norg',
+        'python',
+        'regex',
+        'scss',
+        'toml',
+        'tsx',
+        'typescript',
+        'typst',
+        'vim',
+        'vimdoc',
+        'vue',
+        'xml',
+      })
 
-      local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+      local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
       local ignore_filetypes = {
-        "checkhealth",
-        "lazy",
-        "mason",
-        "snacks_dashboard",
-        "snacks_notif",
-        "snacks_win",
+        'checkhealth',
+        'lazy',
+        'mason',
+        'snacks_dashboard',
+        'snacks_notif',
+        'snacks_win',
       }
 
       -- Auto-install parsers and enable highlighting on FileType
-      vim.api.nvim_create_autocmd("FileType", {
+      vim.api.nvim_create_autocmd('FileType', {
         group = group,
-        desc = "Enable treesitter highlighting and indentation",
+        desc = 'Enable treesitter highlighting and indentation',
         callback = function(event)
           if vim.tbl_contains(ignore_filetypes, event.match) then
             return
@@ -96,18 +96,12 @@ return {
 
           -- Start highlighting immediately (works if parser exists)
           if is_file_too_large(buf, 100) then
-            require "notify"("File too large to highlight", vim.log.levels.WARN)
+            require('notify')('File too large to highlight', vim.log.levels.WARN)
           else
             pcall(vim.treesitter.start, buf, lang)
           end
 
-          -- Enable treesitter indentation
-          -- vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
-          -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-          -- vim.wo[0][0].foldmethod = "expr"
-          -- Install missing parsers (async, no-op if already installed)
-          ts.install { lang }
+          ts.install({ lang })
         end,
       })
     end,

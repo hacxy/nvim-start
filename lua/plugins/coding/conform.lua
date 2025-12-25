@@ -45,28 +45,23 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- javascript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
-      -- typescript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
-    },
-    default_format_opts = {
-      lsp_format = 'fallback',
+      javascript = { 'prettier', stop_after_first = true },
+      typescript = { 'prettier', stop_after_first = true },
     },
     format_after_save = {
-      lsp_format = 'never',
+      lsp_format = 'fallback',
     },
     format_on_save = {
       -- These options will be passed to conform.format()
       timeout_ms = 500,
-      lsp_format = 'never',
+      lsp_format = 'fallback',
     },
-    -- formatters = {
-    --   prettier = {
-    --     condition = function(_, ctx)
-    --       print(M.has_config(ctx))
-    --       return false
-    --     end,
-    --   },
-    -- },
+    formatters = {
+      prettier = {
+        condition = function(_, ctx)
+          return M.has_config(ctx) and M.has_parser(ctx)
+        end,
+      },
+    },
   },
-  -- enabled = false,
 }
