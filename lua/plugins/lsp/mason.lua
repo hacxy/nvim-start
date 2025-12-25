@@ -1,34 +1,34 @@
 return {
-  "mason-org/mason-lspconfig.nvim",
+  'mason-org/mason-lspconfig.nvim',
   opts = {},
   dependencies = {
     {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
       opts = {
         ensure_installed = {
-          "html",
-          "ts_ls",
-          "lua_ls",
-          "stylua",
-          "eslint",
-          "prettier",
+          'html',
+          'ts_ls',
+          'lua_ls',
+          'stylua',
+          'eslint',
+          'prettier',
         },
       },
     },
     {
-      "mason-org/mason.nvim",
+      'mason-org/mason.nvim',
       opts = {
         ui = {
           icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
           },
         },
       },
     },
     {
-      "neovim/nvim-lspconfig",
+      'neovim/nvim-lspconfig',
     },
   },
 }
