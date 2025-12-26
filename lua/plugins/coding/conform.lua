@@ -45,8 +45,8 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
-      javascript = { 'prettier', stop_after_first = true },
-      typescript = { 'prettier', stop_after_first = true },
+      javascript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
+      typescript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
     },
     format_after_save = {
       lsp_format = 'fallback',

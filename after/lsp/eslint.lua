@@ -1,5 +1,8 @@
+local M = require('utils.prettier')
 return {
   on_attach = function(client, bufnr)
+    local path = vim.fn.expand('%:p')
+
     vim.api.nvim_buf_create_user_command(bufnr, 'LspEslintFixAll', function()
       client:request_sync('workspace/executeCommand', {
         command = 'eslint.applyAllFixes',
@@ -12,9 +15,11 @@ return {
       }, nil, bufnr)
     end, {})
 
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = bufnr,
-      command = 'LspEslintFixAll',
-    })
+    if not M.has_config(path) then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        command = 'LspEslintFixAll',
+      })
+    end
   end,
 }
