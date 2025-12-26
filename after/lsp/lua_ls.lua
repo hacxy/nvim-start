@@ -1,6 +1,6 @@
 return {
-  cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
+  cmd = { 'lua-language-server' },
   root_markers = {
     '.luarc.json',
     '.luarc.jsonc',
@@ -12,10 +12,6 @@ return {
     '.git',
   },
   settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-    },
+    Lua = {},
   },
 }

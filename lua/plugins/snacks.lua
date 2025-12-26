@@ -1,86 +1,86 @@
 return {
-  "folke/snacks.nvim",
+  'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
   opts = {
-    bigfile = {
-      enabled = true,
-    },
-    scope = {
-      enabled = false,
-    },
+    bigfile = { enabled = true },
+    scope = { enabled = true },
     picker = { enabled = true },
+    statuscolumn = {
+      enabled = true,
+      folds = { open = true, git_hl = true },
+    },
   },
   keys = {
     {
-      "<leader>,",
+      '<leader>,',
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers",
+      desc = 'Buffers',
     },
     {
-      "<leader>/",
+      '<leader>/',
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep",
+      desc = 'Grep',
     },
     {
-      "<leader>:",
+      '<leader>:',
       function()
         Snacks.picker.command_history()
       end,
-      desc = "Command History",
+      desc = 'Command History',
     },
     {
-      "<leader>n",
+      '<leader>n',
       function()
         Snacks.picker.notifications()
       end,
-      desc = "Notification History",
+      desc = 'Notification History',
     },
     {
-      "<leader>fb",
+      '<leader>fb',
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers",
+      desc = 'Buffers',
     },
     {
-      "<leader>fc",
+      '<leader>fc',
       function()
-        Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+        Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
       end,
-      desc = "Find Config File",
+      desc = 'Find Config File',
     },
     {
-      "<leader>ff",
+      '<leader>ff',
       function()
         Snacks.picker.files()
       end,
-      desc = "Find Files",
+      desc = 'Find Files',
     },
     {
-      "<leader>fg",
+      '<leader>fg',
       function()
         Snacks.picker.git_files()
       end,
-      desc = "Find Git Files",
+      desc = 'Find Git Files',
     },
     {
-      "<leader>fp",
+      '<leader>fp',
       function()
         Snacks.picker.projects()
       end,
-      desc = "Projects",
+      desc = 'Projects',
     },
     {
-      "<leader>fr",
+      '<leader>fr',
       function()
         Snacks.picker.recent()
       end,
-      desc = "Recent",
+      desc = 'Recent',
     },
   },
 }
