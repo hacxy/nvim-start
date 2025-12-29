@@ -1,8 +1,11 @@
 return {
   'chrisgrieser/nvim-origami',
   event = 'VeryLazy',
-  opts = {}, -- needed even when using default config
-
+  opts = {
+    foldKeymaps = {
+      setup = false,
+    },
+  },
   -- recommended: disable vim's auto-folding
   init = function()
     vim.o.foldcolumn = '0' -- '0' is not bad
@@ -13,5 +16,4 @@ return {
     vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   end,
-  enabled = true,
 }

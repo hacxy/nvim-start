@@ -31,12 +31,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = '将焦点移动到右侧窗
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = '将焦点移动到下方窗口' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = '将焦点移动到上方窗口' })
 
--- 注意：某些终端有冲突的快捷键映射或无法发送不同的键码
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "将窗口移动到左侧" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "将窗口移动到右侧" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "将窗口移动到下方" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "将窗口移动到上方" })
-
 -- 按ctrl + s 保存并回到默认模式
 vim.keymap.set('i', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式', silent = true })
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR><esc>', { desc = '保存并回到默认模式', silent = true })

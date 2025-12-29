@@ -12,6 +12,7 @@ return {
           'stylua',
           'eslint',
           'prettier',
+          'stylelint_lsp',
         },
       },
     },
