@@ -1,4 +1,5 @@
 local find_project_root = require('utils.path')
+
 local function term_nav(dir)
   ---@param self snacks.terminal
   return function(self)
@@ -7,15 +8,52 @@ local function term_nav(dir)
     end)
   end
 end
+
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
   opts = {
     bigfile = { enabled = true },
-    scope = { enabled = true },
     picker = { enabled = true },
     lazygit = { enabled = true },
+    words = { enabled = true },
+    indent = {
+      priority = 1,
+      enabled = true, -- enable indent guides
+      char = '│',
+      only_scope = false, -- only show indent guides of the scope
+      only_current = false, -- only show indent guides in the current window
+      hl = 'SnacksIndent', ---@type string|string[] hl groups for indent guides
+    },
+
+    scope = {
+      enabled = true, -- enable highlighting the current scope
+      priority = 200,
+      char = '│',
+      underline = false, -- underline the start of the scope
+      only_current = false, -- only show scope in the current window
+      hl = 'SnacksIndentScope', ---@type string|string[] hl group for scopes
+    },
+    chunk = {
+      -- when enabled, scopes will be rendered as chunks, except for the
+      -- top-level scope which will be rendered as a scope.
+      enabled = false,
+      -- only show chunk scopes in the current window
+      only_current = false,
+      priority = 200,
+      hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
+      char = {
+        corner_top = '┌',
+        corner_bottom = '└',
+        -- corner_top = "╭",
+        -- corner_bottom = "╰",
+        horizontal = '─',
+        vertical = '│',
+        arrow = '>',
+      },
+    },
+
     terminal = {
       enabled = true,
       win = {

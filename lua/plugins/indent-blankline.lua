@@ -11,4 +11,5 @@ return {
       show_end = false,
     },
   },
+  enabled = false,
 }
