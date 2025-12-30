@@ -11,11 +11,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = '*',
-  callback = function()
-    local root = require('lazygit.utils').project_root_dir()
-    print(root)
-  end,
-})
