@@ -8,14 +8,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- 诊断快捷键映射
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '打开诊断 [Q]uickfix 列表' })
 
--- 在内置终端中使用一个更容易发现的快捷键退出终端模式。
--- 否则，你通常需要按 <C-\><C-n>，这
--- 不是没有更多经验的人会猜到的。
---
--- 注意：这在所有终端模拟器/tmux/等中都不会工作。尝试你自己的映射
--- 或者直接使用 <C-\><C-n> 退出终端模式
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = '退出终端模式' })
-
 -- 提示：在普通模式下禁用方向键
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -40,3 +32,6 @@ vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = '退出编辑器' })
 
 -- 撤回
 vim.keymap.set({ 'n', 'i' }, '<D-z>', '<Cmd>undo<CR>', { silent = true })
+
+-- buffer
+vim.keymap.set({ 'n' }, '<leader>bd', '<Cmd>bdelete<CR>', { silent = true })
