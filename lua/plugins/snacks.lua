@@ -104,6 +104,13 @@ return {
       desc = 'Recent',
     },
     {
+      '<leader>gg',
+      function()
+        Snacks.lazygit({ cwd = Snacks.git.get_root() })
+      end,
+      desc = 'Open lazygit',
+    },
+    {
       '<c-_>',
       function()
         Snacks.terminal(nil, { cwd = find_project_root() })
