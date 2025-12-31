@@ -1,4 +1,14 @@
-local M = require('utils.prettier')
+local prettier = require('utils.prettier')
+local vscode_settings = require('utils.vscode_settings')
+
+local vscodeSettings = vscode_settings.read_vscode_settings()
+
+local eslintRulesCustomizations = {}
+
+if vscodeSettings ~= false then
+  eslintRulesCustomizations = vscodeSettings.eslintRulesCustomizations
+end
+
 return {
   filetypes = {
     'javascript',
@@ -27,19 +37,7 @@ return {
   },
 
   settings = {
-    -- Silent the stylistic rules in your IDE, but still auto fix them
-    rulesCustomizations = {
-      { rule = 'style/*', severity = 'on', fixable = true },
-      { rule = 'format/*', severity = 'on', fixable = true },
-      { rule = '*-indent', severity = 'on', fixable = true },
-      { rule = '*-spacing', severity = 'on', fixable = true },
-      { rule = '*-spaces', severity = 'on', fixable = true },
-      { rule = '*-order', severity = 'on', fixable = true },
-      { rule = '*-dangle', severity = 'on', fixable = true },
-      { rule = '*-newline', severity = 'on', fixable = true },
-      { rule = '*quotes', severity = 'on', fixable = true },
-      { rule = '*semi', severity = 'on', fixable = true },
-    },
+    rulesCustomizations = eslintRulesCustomizations,
   },
 
   on_attach = function(client, bufnr)
@@ -57,7 +55,7 @@ return {
       }, nil, bufnr)
     end, {})
 
-    if not M.has_config(path) then
+    if vscodeSettings ~= false then
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = bufnr,
         command = 'LspEslintFixAll',

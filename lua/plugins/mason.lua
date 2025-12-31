@@ -13,6 +13,7 @@ return {
           'eslint',
           'prettier',
           'stylelint_lsp',
+          'prettierd',
         },
       },
     },

@@ -1,67 +1,41 @@
-local M = {}
-function M.has_config(ctx)
-  vim.fn.system({ 'prettier', '--find-config-path', ctx.filename })
-  return vim.v.shell_error == 0
-end
-
-local supported = {
-  'css',
-  'graphql',
-  'handlebars',
-  'html',
-  'javascript',
-  'javascriptreact',
-  'json',
-  'jsonc',
-  'less',
-  'markdown',
-  'markdown.mdx',
-  'scss',
-  'typescript',
-  'typescriptreact',
-  'vue',
-  'yaml',
-}
-
-function M.has_parser(ctx)
-  local ft = vim.bo[ctx.buf].filetype --[[@as string]]
-  -- default filetypes are always supported
-  if vim.tbl_contains(supported, ft) then
-    return true
-  end
-  -- otherwise, check if a parser can be inferred
-  local ret = vim.fn.system({ 'prettier', '--file-info', ctx.filename })
-  ---@type boolean, string?
-  local ok, parser = pcall(function()
-    return vim.fn.json_decode(ret).inferredParser
-  end)
-  return ok and parser and parser ~= vim.NIL
-end
-
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  opts = {
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      javascript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
-      typescript = { 'prettier', stop_after_first = true, lsp_format = 'never' },
-    },
-    format_after_save = {
-      lsp_format = 'fallback',
-    },
-    format_on_save = {
-      -- These options will be passed to conform.format()
-      timeout_ms = 500,
-      lsp_format = 'fallback',
-    },
-    formatters = {
-      prettier = {
-        condition = function(_, ctx)
-          return M.has_config(ctx) and M.has_parser(ctx)
-        end,
+  opts = function()
+    local vscode_settings = require('utils.vscode_settings')
+    local vscodeSettings = vscode_settings.read_vscode_settings()
+
+    local res = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+        markdown = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
       },
-    },
-  },
+      format_after_save = {
+        lsp_format = 'fallback',
+      },
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_format = 'fallback',
+      },
+      formatters = {
+        prettier = {
+          condition = function()
+            return not vscodeSettings
+          end,
+        },
+        prettierd = {
+          condition = function()
+            return not vscodeSettings
+          end,
+        },
+      },
+    }
+    return res
+  end,
 }
