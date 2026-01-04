@@ -4,7 +4,7 @@ return {
   opts = {
     completion = {
       accept = {
-        auto_brackets = { enabled = false },
+        auto_brackets = { enabled = false }, -- 不启用自动补全括号
       },
     },
     keymap = {
