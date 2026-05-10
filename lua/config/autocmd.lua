@@ -1,3 +1,10 @@
+-- 后台定时检测文件外部变更，无需聚焦即可自动更新 buffer
+vim.fn.timer_start(1000, function()
+  if vim.fn.mode() == "n" then
+    vim.cmd "checktime"
+  end
+end, { ["repeat"] = -1 })
+
 -- [[ 基本自动命令 ]]
 --  参见 `:help lua-guide-autocommands`
 

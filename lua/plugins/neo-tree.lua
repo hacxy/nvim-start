@@ -20,6 +20,20 @@ return {
         silent = true,
       },
     },
+    config = function(_, opts)
+      require("neo-tree").setup(opts)
+
+      local refresh = function()
+        local ok, manager = pcall(require, "neo-tree.sources.manager")
+        if ok then
+          manager.refresh("filesystem")
+        end
+      end
+
+      vim.api.nvim_create_autocmd({ "BufWritePost", "FocusGained", "TermClose", "ShellCmdPost" }, {
+        callback = refresh,
+      })
+    end,
     opts = {
       close_if_last_window = true,
       enable_git_status = true,
