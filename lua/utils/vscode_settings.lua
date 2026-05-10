@@ -5,8 +5,12 @@ local M = {}
 function M.read_vscode_settings()
   -- 获取当前工作目录
   local cwd = Snacks.git.get_root()
-  local settings_path = cwd .. '/.vscode/settings.json'
 
+  if not cwd then
+    return false
+  end
+
+  local settings_path = cwd .. '/.vscode/settings.json'
   -- 检查文件是否存在
   if vim.fn.filereadable(settings_path) == 0 then
     return false

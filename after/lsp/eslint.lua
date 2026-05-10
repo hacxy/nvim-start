@@ -1,4 +1,3 @@
-local prettier = require('utils.prettier')
 local vscode_settings = require('utils.vscode_settings')
 
 local vscodeSettings = vscode_settings.read_vscode_settings()
@@ -41,8 +40,6 @@ return {
   },
 
   on_attach = function(client, bufnr)
-    local path = vim.fn.expand('%:p')
-
     vim.api.nvim_buf_create_user_command(bufnr, 'LspEslintFixAll', function()
       client:request_sync('workspace/executeCommand', {
         command = 'eslint.applyAllFixes',
@@ -55,11 +52,16 @@ return {
       }, nil, bufnr)
     end, {})
 
-    if vscodeSettings ~= false then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = bufnr,
-        command = 'LspEslintFixAll',
-      })
-    end
+    -- if vscodeSettings ~= false then
+    --   vim.api.nvim_create_autocmd('BufWritePre', {
+    --     buffer = bufnr,
+    --     command = 'LspEslintFixAll',
+    --   })
+    -- end
+    --
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      command = 'LspEslintFixAll',
+    })
   end,
 }
