@@ -35,3 +35,5 @@ vim.keymap.set({ 'n', 'i' }, '<D-z>', '<Cmd>undo<CR>', { silent = true })
 
 -- buffer
 vim.keymap.set({ 'n' }, '<leader>bd', '<Cmd>bdelete<CR>', { silent = true })
+
+
