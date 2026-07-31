@@ -52,16 +52,7 @@ return {
       }, nil, bufnr)
     end, {})
 
-    -- if vscodeSettings ~= false then
-    --   vim.api.nvim_create_autocmd('BufWritePre', {
-    --     buffer = bufnr,
-    --     command = 'LspEslintFixAll',
-    --   })
-    -- end
-    --
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = bufnr,
-      command = 'LspEslintFixAll',
-    })
+    -- eslint 只用于 lint 报错，格式化交给 biome/prettier
+    -- 如需手动修复，执行 :LspEslintFixAll
   end,
 }

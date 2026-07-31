@@ -15,6 +15,8 @@ return {
           'prettier',
           'stylelint_lsp',
           'prettierd',
+          'biome',
+          'jsonls',
         },
       },
     },

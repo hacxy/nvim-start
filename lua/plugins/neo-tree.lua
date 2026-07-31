@@ -51,10 +51,20 @@ return {
           },
         },
         filtered_items = {
+          visible = true, -- 默认显示隐藏文件
+          show_hidden_count = false, -- 不显示 "(X hidden items)" 提示
+          hide_dotfiles = false, -- 不隐藏点文件
+          hide_gitignored = true,
+          hide_by_name = {
+            ".git",
+            ".DS_Store",
+          },
           never_show = {
             ".git",
           },
         },
+        bind_to_cwd = true,
+        hijack_netrw_behavior = "open_default",
       },
       event_handlers = {
         {
