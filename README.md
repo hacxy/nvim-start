@@ -11,7 +11,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 | ------ | ------ | ----------------- |
 | **Neovim** >= 0.11.2 | 编辑器 (需要 LuaJIT 构建) | `brew install neovim` |
 | **Git** >= 2.19.0 | 版本控制 | `brew install git` |
-| **C 编译器** | nvim-treesitter 需要 | `xcode-select --install` |
 | **Nerd Font** | 图标显示 (可选但推荐) | [nerdfonts.com](https://www.nerdfonts.com/font-downloads) |
 
 ### 推荐工具
@@ -23,7 +22,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 | **ripgrep** (rg) | 全局文本搜索 | `brew install ripgrep` |
 | **fd** | 快速文件查找 | `brew install fd` |
 | **curl** | HTTP 请求 (blink.cmp 需要) | `brew install curl` |
-| **tree-sitter-cli** | Treesitter 语法解析 | `brew install tree-sitter` |
+| **tree-sitter-cli** | Treesitter 语法解析 | `brew install tree-sitter-cli` |
 | **im-select** | macOS 输入法自动切换 | `brew install im-select` |
 
 ### 语言工具 (可选)
@@ -44,7 +43,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 brew install neovim git curl
 
 # 推荐工具
-brew install lazygit fzf ripgrep fd tree-sitter im-select
+brew install lazygit fzf ripgrep fd tree-sitter-cli im-select
 
 # 语言工具 (按需安装)
 brew install stylua shfmt biome
