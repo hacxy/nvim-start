@@ -14,6 +14,10 @@ return {
           SnacksPickerGitStatusDeleted = { fg = "$red" },
           SnacksPickerGitStatusRenamed = { fg = "$blue" },
           SnacksPickerGitStatusCopied = { fg = "$cyan" },
+          -- Transparent tabline for bufferline
+          TabLine = { bg = "none" },
+          TabLineFill = { bg = "none" },
+          TabLineSel = { bg = "none" },
         },
       })
       require("onedark").load()
