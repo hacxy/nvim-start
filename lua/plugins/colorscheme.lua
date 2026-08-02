@@ -21,6 +21,15 @@ return {
           -- Transparent statusline
           StatusLine = { bg = "none" },
           StatusLineNC = { bg = "none" },
+          -- Transparent terminal and float
+          Terminal = { bg = "none" },
+          NormalFloat = { bg = "none" },
+          StatusLineTerm = { bg = "none" },
+          StatusLineTermNC = { bg = "none" },
+          -- Lighter borders
+          FloatBorder = { fg = "$grey" },
+          WinSeparator = { fg = "$grey" },
+          SnacksWinSeparator = { fg = "$grey" },
         },
       })
       require("onedark").load()
