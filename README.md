@@ -1,187 +1,99 @@
-# Neovim Configuration
+# 💤 LazyVim
 
-A custom Neovim configuration built from scratch, migrated from LazyVim. Designed for a clean, minimal, and efficient editing experience with a focus on web development (TypeScript, Vue, CSS/SCSS) and Lua.
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
-## Preview
+## ⚡️ 前置依赖
 
-> Add a screenshot or GIF here
+### 必需
 
-## Features
+| 工具 | 说明 | 安装命令 (macOS) |
+| ------ | ------ | ----------------- |
+| **Neovim** >= 0.11.2 | 编辑器 (需要 LuaJIT 构建) | `brew install neovim` |
+| **Git** >= 2.19.0 | 版本控制 | `brew install git` |
+| **C 编译器** | nvim-treesitter 需要 | `xcode-select --install` |
+| **Nerd Font** | 图标显示 (可选但推荐) | [nerdfonts.com](https://www.nerdfonts.com/font-downloads) |
 
-- **Plugin Management** — [lazy.nvim](https://github.com/folke/lazy.nvim) with auto-bootstrap
-- **Colorscheme** — [Catppuccin](https://github.com/catppuccin/nvim) with transparent background
-- **Dashboard** — Custom start screen via [Snacks.nvim](https://github.com/folke/snacks.nvim)
-- **LSP** — Language servers managed by Mason (ts_ls, lua_ls, eslint, html, stylelint)
-- **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp) with LSP capabilities
-- **Formatting** — [conform.nvim](https://github.com/stevearc/conform.nvim) with Prettier & StyLua
-- **Linting** — [nvim-lint](https://github.com/mfussenegger/nvim-lint) integration
-- **Syntax Highlighting** — Treesitter with support for 25+ languages
-- **Git Integration** — [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) + lazygit terminal
-- **File Explorer** — [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- **Fuzzy Finding** — Snacks picker for files, grep, git files, and more
-- **Terminal** — Integrated terminal with Snacks
-- **Status Line** — [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- **Notifications** — [noice.nvim](https://github.com/folke/noice.nvim) for better UI messages
-- **Auto-pairs** — [mini.pairs](https://github.com/echasnovski/mini.pairs)
-- **Smart Folding** — [origami.nvim](https://github.com/chrisgrieser/nvim-origami)
-- **IM Select** — Automatic input method switching on macOS
-- **VS Code Settings Sync** — Reads VS Code settings for Prettier configuration
+### 推荐工具
 
-## Requirements
+| 工具 | 说明 | 安装命令 |
+| ------ | ------ | --------- |
+| **lazygit** | Git TUI 界面 | `brew install lazygit` |
+| **fzf** | 模糊搜索 | `brew install fzf` |
+| **ripgrep** (rg) | 全局文本搜索 | `brew install ripgrep` |
+| **fd** | 快速文件查找 | `brew install fd` |
+| **curl** | HTTP 请求 (blink.cmp 需要) | `brew install curl` |
+| **tree-sitter-cli** | Treesitter 语法解析 | `brew install tree-sitter` |
+| **im-select** | macOS 输入法自动切换 | `brew install im-select` |
 
-- **Neovim** >= 0.11
-- **Nerd Font** (for icons)
-- **Git**
-- **Node.js** (for Mason packages)
-- **ripgrep** (for grep/search)
-- **fd** (for file finding)
-- **tree-sitter-cli** (for Treesitter parser compilation)
-- **lazygit** (optional, for git UI)
-- **Kitty** terminal (required for image preview via image.nvim; use `iterm2` backend if on iTerm2)
-- **luarocks** + **ImageMagick** (optional, for image.nvim image preview)
-- **im-select** (optional, for automatic input method switching on macOS)
+### 语言工具 (可选)
 
-### Quick Install (macOS)
+| 工具 | 说明 | 安装命令 |
+| ------ | ------ | --------- |
+| **stylua** | Lua 格式化 | `brew install stylua` |
+| **shfmt** | Shell 格式化 | `brew install shfmt` |
+| **biome** | JS/TS/JSON 格式化 + Lint | `brew install biome` |
+| **prettier** | 多语言格式化 | `npm install -g prettier` |
+| **eslint** | JS/TS Lint | `npm install -g eslint` |
+| **lua-language-server** | Lua LSP | `brew install lua-language-server` |
+
+## 🚀 一键安装所有依赖 (macOS)
 
 ```bash
-brew install neovim git node ripgrep fd tree-sitter luarocks imagemagick lazygit
-brew install --cask font-jetbrains-mono-nerd-font
-# Optional: im-select for input method switching
-# brew install im-select
+# 必需
+brew install neovim git curl
+
+# 推荐工具
+brew install lazygit fzf ripgrep fd tree-sitter im-select
+
+# 语言工具 (按需安装)
+brew install stylua shfmt biome
+npm install -g prettier eslint
 ```
 
-## Installation
+## 📦 安装配置
 
 ```bash
-# Backup existing config (if any)
-mv ~/.config/nvim ~/.config/nvim.bak
+# 备份现有配置
+mv ~/.config/nvim{,.bak}
 
-# Clone this repo
-git clone https://github.com/hacxy/nvim.git ~/.config/nvim
+# 克隆配置
+git clone <your-repo-url> ~/.config/nvim
 
-# Launch Neovim — plugins will auto-install
+# 启动 Neovim (首次启动会自动安装插件)
 nvim
 ```
 
-## Keybindings
+首次启动后运行 `:LazyHealth` 检查是否一切正常。
 
-> Leader key: `Space`
+## 📂 目录结构
 
-### General
-
-| Key | Mode | Description |
-| ----- | ------ | ------------- |
-| `<Esc>` | Normal | Clear search highlight |
-| `<C-s>` | Normal/Insert | Save file |
-| `<leader>qq` | Normal | Quit editor |
-| `<D-z>` | Normal/Insert | Undo (macOS) |
-
-### Window Navigation
-
-| Key | Mode | Description |
-| ----- | ------ | ------------- |
-| `<C-h>` | Normal | Move to left window |
-| `<C-j>` | Normal | Move to lower window |
-| `<C-k>` | Normal | Move to upper window |
-| `<C-l>` | Normal | Move to right window |
-
-### Snacks Picker
-
-| Key | Mode | Description |
-| ----- | ------ | ------------- |
-| `<leader>,` | Normal | Buffers |
-| `<leader>/` | Normal | Grep |
-| `<leader>:` | Normal | Command History |
-| `<leader>ff` | Normal | Find Files (Root Dir) |
-| `<leader>fg` | Normal | Find Git Files |
-| `<leader>fp` | Normal | Projects |
-| `<leader>fr` | Normal | Recent Files |
-| `<leader>fc` | Normal | Find Config File |
-
-### Git & Terminal
-
-| Key | Mode | Description |
-|-----|------|-------------|
-| `<leader>gg` | Normal | Open lazygit |
-| `<C-_>` | Normal | Toggle terminal |
-
-### LSP
-
-| Key | Mode | Description |
-|-----|------|-------------|
-| `gd` | Normal | Go to definition |
-| `gD` | Normal | Go to declaration |
-
-### Buffer
-
-| Key | Mode | Description |
-|-----|------|-------------|
-| `<leader>bd` | Normal | Delete buffer |
-
-## Project Structure
-
-```
-~/.config/nvim/
-├── init.lua                  # Entry point
-├── lazy-lock.json            # Plugin lockfile
-├── after/
-│   ├── ftplugin/             # Filetype-specific settings
-│   │   └── markdown.lua
-│   └── lsp/                  # Per-server LSP configuration
-│       ├── eslint.lua
-│       ├── lua_ls.lua
-│       ├── stylelint_lsp.lua
-│       └── ts_ls.lua
-└── lua/
-    ├── config/
-    │   ├── autocmd.lua       # Autocommands
-    │   ├── basic.lua         # Editor options
-    │   ├── keymaps.lua       # Key mappings
-    │   ├── lazy.lua          # Plugin manager setup
-    │   └── lsp.lua           # LSP attach & diagnostics
-    ├── plugins/              # Plugin specifications
-    │   ├── blink.lua         # Completion
-    │   ├── colorscheme.lua   # Catppuccin
-    │   ├── conform.lua       # Formatting
-    │   ├── gitsigns.lua      # Git signs
-    │   ├── im-select.lua     # Input method switching
-    │   ├── image.lua         # Image preview
-    │   ├── lazydev.lua       # Lua development
-    │   ├── lspconfig.lua     # LSP configuration
-    │   ├── lualine.lua       # Status line
-    │   ├── mason.lua         # LSP/formatter installer
-    │   ├── mini.pairs.lua    # Auto-pairing
-    │   ├── neo-tree.lua      # File explorer
-    │   ├── noice.lua         # UI messages
-    │   ├── nvim-lint.lua     # Linting
-    │   ├── origami.lua       # Folding
-    │   ├── snacks.lua        # Dashboard, picker, terminal
-    │   ├── treesitter.lua    # Syntax highlighting
-    │   ├── ts-comments.lua   # Commenting
-    │   └── which-key.lua     # Keybinding hints
-    └── utils/
-        ├── prettier.lua      # Prettier utilities
-        └── vscode_settings.lua # VS Code settings reader
+```text
+~/.config/nvim
+├── init.lua              # 入口文件
+├── stylua.toml           # Lua 格式化配置
+├── lazyvim.json          # LazyVim 状态文件
+└── lua
+    ├── config
+    │   ├── autocmds.lua  # 自动命令
+    │   ├── keymaps.lua   # 快捷键
+    │   ├── lazy.lua      # lazy.nvim 配置
+    │   └── options.lua   # 选项设置
+    └── plugins
+        ├── example.lua   # 示例插件 (默认禁用)
+        └── im-select.lua # macOS 输入法切换
 ```
 
-## Installed LSP Servers & Tools
+## ⚙️ 自定义配置
 
-Managed via [Mason](https://github.com/williamboman/mason.nvim):
+- `lua/config/options.lua` - 修改编辑器选项
+- `lua/config/keymaps.lua` - 添加自定义快捷键
+- `lua/config/autocmds.lua` - 添加自动命令
+- `lua/plugins/` - 添加/覆盖插件配置
+- 运行 `:LazyExtras` 启用额外功能 (如 TypeScript、Biome 等)
 
-| Tool | Purpose |
-| ------ | --------- |
-| `ts_ls` | TypeScript / JavaScript |
-| `lua_ls` | Lua |
-| `html` | HTML |
-| `eslint` | JavaScript / TypeScript linting |
-| `stylelint_lsp` | CSS / SCSS linting |
-| `prettier` / `prettierd` | Code formatting |
-| `stylua` | Lua formatting |
+## 📚 参考
 
-## Treesitter Languages
-
-Bash, CSS, Diff, Fish, HTML, JavaScript, JSON, Lua, Markdown, Python, SCSS, TOML, TSX, TypeScript, Typst, Vue, XML, and more (see `lua/plugins/treesitter.lua`).
-
-## License
-
-MIT
+- [LazyVim 官方文档](https://lazyvim.github.io)
+- [LazyVim for Ambitious Developers](https://lazyvim-ambitious-devs.phillips.codes) (免费电子书)
+- [LazyVim Cheatsheet](https://lazyvim.github.io/keymaps)
