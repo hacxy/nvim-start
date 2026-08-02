@@ -18,6 +18,9 @@ return {
           TabLine = { bg = "none" },
           TabLineFill = { bg = "none" },
           TabLineSel = { bg = "none" },
+          -- Transparent statusline
+          StatusLine = { bg = "none" },
+          StatusLineNC = { bg = "none" },
         },
       })
       require("onedark").load()
