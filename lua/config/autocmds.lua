@@ -15,3 +15,23 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = false
   end,
 })
+
+-- snacks explorer 的 git 状态刷新依赖 fs_event 监听（macOS 上事件经常丢失），
+-- 且内部有 15 分钟缓存，导致 git 状态不更新、必须重启 nvim 才能恢复。
+-- 在焦点恢复 / 保存文件 / 会话恢复时，强制重置 git 缓存并刷新 explorer。
+vim.api.nvim_create_autocmd({ "FocusGained", "BufWritePost", "VimResume" }, {
+  group = vim.api.nvim_create_augroup("snacks_explorer_git_refresh", { clear = true }),
+  callback = function()
+    local ok, Snacks = pcall(require, "snacks")
+    if not ok then
+      return
+    end
+    local pickers = Snacks.picker.get({ source = "explorer", tab = false })
+    for _, picker in ipairs(pickers) do
+      if picker and not picker.closed then
+        require("snacks.explorer.git").refresh(picker:cwd())
+      end
+    end
+    require("snacks.explorer.watch").refresh()
+  end,
+})
